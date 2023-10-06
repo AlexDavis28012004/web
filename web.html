@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hungry Jack's</title>
+    <style>
+        /* Add custom CSS styles */
+        body {
+            background-color: #ff9900; /* Set background color to orange */
+            font-family: Arial, sans-serif;
+        }
+        #app {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Conditional Rendering -->
+        <h1 v-if="showHeading">Welcome to Hungry Jack's</h1>
+        <p v-else>Heading is hidden.</p>
+
+        <button @click="toggleHeading">Toggle Heading</button>
+
+        <!-- v-show -->
+        <p v-show="showParagraph">This paragraph is shown/hidden with v-show.</p>
+        
+        <!-- v-for: Menu Items -->
+        <h2>Menu Items</h2>
+        <ul>
+            <li v-for="item in menuItems" :key="item.id">{{ item.name }}</li>
+        </ul>
+
+        <!-- v-for: Locations -->
+        <h2>Locations</h2>
+        <ul>
+            <li v-for="location in locations" :key="location.id">{{ location.name }}</li>
+        </ul>
+
+        <!-- v-for: Offers -->
+        <h2>Offers</h2>
+        <ul>
+            <li v-for="offer in offers" :key="offer.id">{{ offer.name }}</li>
+        </ul>
+
+        <!-- Form Input Handling with v-model -->
+        <h2>Contact Us</h2>
+        <label for="message">Enter your message:</label>
+        <textarea id="message" v-model="userMessage"></textarea>
+        <p>Your message: {{ userMessage }}</p>
+
+        <!-- Add an image -->
+        <img src="hungryjacks-image.jpg" alt="Hungry Jack's Image">
+    </div>
+
+    <!-- Vue 3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.min.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showHeading: true,
+                    showParagraph: true,
+                    menuItems: [
+                        { id: 1, name: 'Whopper' },
+                        { id: 2, name: 'Chicken Royale' },
+                        { id: 3, name: 'Fish and Chips' },
+                    ],
+                    locations: [
+                        { id: 1, name: 'New York' },
+                        { id: 2, name: 'Los Angeles' },
+                        { id: 3, name: 'Chicago' },
+                    ],
+                    offers: [
+                        { id: 1, name: 'Combo Meal' },
+                        { id: 2, name: 'Kids Meal' },
+                        { id: 3, name: 'Vegetarian Options' },
+                    ],
+                    userMessage: '',
+                };
+            },
+            methods: {
+                toggleHeading() {
+                    this.showHeading = !this.showHeading;
+                },
+            },
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
